@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="persistentClasses.User" table="user">
+    <id name="id" column="id" type="int">
+      <generator class="identity"/>
+    </id>
+    <property name="username" column="username" type="string" not-null="true" />
+    <property name="password" column="password" type="string" not-null="true" />
+    <property name="vmlimit" column="vmlimit" type="int" not-null="true" />
+    <property name="nickname" column="nickname" type="string" />
+    <property name="registTime" column="regist_time" type="long" not-null="true" />
+    <property name="lasttimeLoginTime" column="lasttime_login_time" type="long" not-null="true" />
+    <property name="thistimeLoginTime" column="thistime_login_time" type="long" not-null="true" />
+    <property name="email" column="email" type="string" />
+    <property name="qq" column="qq" type="java.lang.Integer" />
+    <property name="address" column="address" type="string" />
+    <property name="zip" column="zip" type="java.lang.Integer" />
+  </class>
+
+</hibernate-mapping>

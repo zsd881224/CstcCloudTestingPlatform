@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="persistentClasses.TestTemplate" table="test_template">
+    <id name="id" column="id" type="int">
+      <generator class="identity"/>
+    </id>
+    <property name="orgname" column="orgname" type="string" not-null="true" />
+    <property name="vdcname" column="vdcname" type="string" not-null="true" />
+    <property name="tempname" column="tempname" type="string" not-null="true" />
+  </class>
+
+</hibernate-mapping>

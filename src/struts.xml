@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.action.extension" value="," />
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+    
+    <package name="default" extends="struts-default">
+     	<!-- <global-results>
+      		<result name="error" type="redirectAction">
+      			<param name="actionName">error</param>
+      			<param name="namespace">/</param>
+      		</result>
+      		<result name="needlogin" type="redirectAction">
+      			<param name="actionName">index</param>
+      			<param name="namespace">/</param>
+      		</result>
+     	</global-results>
+     	
+     	<global-exception-mappings>
+     		<exception-mapping result="error" exception="java.lang.Exception" />
+     	</global-exception-mappings>
+    
+    	<action name="*">
+    		<result type="redirectAction">
+    			<param name="actionName">error</param>
+    			<param name="namespace">/</param>
+    		</result>
+    	</action> -->
+    </package>
+    
+    <package name="main" namespace="" extends="default">
+    	<action name="" class="login" method="checkLogin">
+    		<result>/index.jsp</result>
+    		<result name="user">/user_resource/index.jsp</result>
+    		<result name="admin">/admin_resource/index.jsp</result>
+    	</action>
+        <action name="index" class="login" method="checkLogin">
+        	<result>/index.jsp</result>
+        	<result name="user">/user_resource/index.jsp</result>
+    		<result name="admin">/admin_resource/index.jsp</result>
+        </action>
+        <action name="register">
+        	<result>/register.jsp</result>
+        </action>
+        <action name="regist" class="login" method="Regist">
+        	<result name="form_error" type="redirectAction">register</result>
+        	<result type="redirectAction">index</result>
+        </action>
+        <action name="login" class="login" method="Login">
+            <result name="login" type="redirectAction">index</result>
+        </action>
+        <action name="logout" class="login" method="Logout">
+        	<result name="logout" type="redirectAction">index</result>
+        </action>
+        <action name="message" class="message" method="listMessage">
+        	<result>/user_resource/userManagement/message.jsp</result>
+        </action>
+        <action name="userInfo" class="user.userInfo" method="getBasicInfo">
+        	<result>/user_resource/userManagement/userInfo.jsp</result>
+        </action>
+        <action name="performanceTesting" class="user.performanceTesting" method="index">
+        	<result>/user_resource/performanceTesting/index.jsp</result>
+        </action>
+        <action name="templateService" class="user.templateService" method="index">
+        	<result>/user_resource/templateService/index.jsp</result>
+        </action>
+    </package>
+    
+    <package name="message" namespace="/message" extends="default">
+    	<action name="" class="message" method="listMessage">
+    		<result>/user_resource/userManagement/message.jsp</result>
+    	</action>
+    	<action name="index" class="message" method="listMessage">
+    		<result>/user_resource/userManagement/message.jsp</result>
+    	</action>
+    	<action name="leaveMessage" class="message" method="leaveMessage">
+    		<result type="redirectAction">index</result>
+    	</action>
+    	<action name="deleteMessage" class="message" method="deleteMessage">
+    		<result type="redirectAction">index?page=${curPage}</result>
+    	</action>
+    </package>
+    
+    <package name="userInfo" namespace="/userInfo" extends="default">
+    	<action name="" class="user.userInfo" method="getBasicInfo">
+    		<result>/user_resource/userManagement/userInfo.jsp</result>
+    	</action>
+    	<action name="index" class="user.userInfo" method="getBasicInfo">
+    		<result>/user_resource/userManagement/userInfo.jsp</result>
+    	</action>
+    	<action name="changePassword" class="user.userInfo" method="check_user">
+    		<result>/user_resource/userManagement/changePassword.jsp</result>
+    	</action>
+    	<action name="doChangePassword" class="user.userInfo" method="changePassword">
+    		<result name="form_error" type="redirectAction">changePassword</result>
+    		<result type="redirectAction">/index</result>
+    	</action>
+    	<action name="editInfo" class="user.userInfo" method="editInfo">
+    		<result>/user_resource/userManagement/editInfo.jsp</result>
+    	</action>
+    	<action name="saveInfo" class="user.userInfo" method="saveInfo">
+    		<result type="redirectAction">index</result>
+    	</action>
+    </package>
+    
+    <package name="performanceTesting" namespace="/performanceTesting" extends="default">
+    	<action name="" class="user.performanceTesting" method="index">
+    		<result>/user_resource/performanceTesting/index.jsp</result>
+    	</action>
+    	<action name="index" class="user.performanceTesting" method="index">
+    		<result>/user_resource/performanceTesting/index.jsp</result>
+    	</action>
+    	<action name="info_check">
+    		<result>/info_displayer.jsp</result>
+    	</action>
+    	<action name="listTestTemplate" class="user.performanceTesting" method="listTestTemplate">
+    		<result>/user_resource/performanceTesting/ajax/listTestTemplate.jsp</result>
+    	</action>
+    	<action name="getBasicInfo" class="user.performanceTesting" method="getBasicInfo">
+    		<result>/user_resource/performanceTesting/ajax/basicInfo.jsp</result>
+    	</action>
+    	<action name="listApp" class="user.performanceTesting" method="listApp">
+    		<result>/user_resource/performanceTesting/ajax/devicesInfo.jsp</result>
+    	</action>
+    	<action name="releaseResource" class="user.performanceTesting" method="releaseResource">
+    		<result>/blank.html</result>
+    		<result name="fail">/blank.html</result>
+    	</action>
+    	<action name="getNetworkInfo" class="user.performanceTesting" method="listVM">
+    		<result>/user_resource/performanceTesting/ajax/networkInfo.jsp</result>
+    		<result name="fail">/blank.html</result>
+    	</action>
+    	<action name="changeState" class="user.performanceTesting" method="changeState">
+    		<result>/user_resource/performanceTesting/ajax/networkInfo.jsp</result>
+    		<result name="fail">/blank.html</result>
+    	</action>
+    	<action name="getRunState" class="user.performanceTesting" method="showVMDetail">
+    		<result>/user_resource/performanceTesting/ajax/runState.jsp</result>
+    		<result name="fail">/blank.html</result>
+    	</action>
+    	<action name="createVapp" class="user.performanceTesting" method="createVapp">
+    		<result>/blank.html</result>
+    		<result name="fail">/blank.html</result>
+    	</action>
+    	<action name="showConsole" class="user.performanceTesting" method="prepareConsole">
+    		<result>/user_resource/performanceTesting/ajax/Console.jsp</result>
+    	</action>
+    </package>
+    
+    <package name="templateService" namespace="/templateService" extends="default">
+    	<action name="" class="user.templateService" method="index">
+    		<result>/user_resource/templateService/index.jsp</result>
+    	</action>
+    	<action name="index" class="user.templateService" method="index">
+    		<result>/user_resource/templateService/index.jsp</result>
+    	</action>
+    	<action name="info_check">
+    		<result>/info_displayer.jsp</result>
+    	</action>
+    	<action name="listSystemTemplate" class="user.templateService" method="listSystemTemplate">
+    		<result>/user_resource/templateService/ajax/listSystemTemplate.jsp</result>
+    	</action>
+    	<action name="getBasicInfo" class="user.templateService" method="getBasicInfo">
+    		<result>/user_resource/templateService/ajax/basicInfo.jsp</result>
+    	</action>
+    	<action name="listApp" class="user.templateService" method="listApp">
+    		<result>/user_resource/templateService/ajax/devicesInfo.jsp</result>
+    	</action>
+    	<action name="releaseResource" class="user.templateService" method="releaseResource">
+    		<result>/blank.html</result>
+    		<result name="fail">/blank.html</result>
+    	</action>
+    	<action name="getNetworkInfo" class="user.templateService" method="listVM">
+    		<result>/user_resource/templateService/ajax/networkInfo.jsp</result>
+    		<result name="fail">/blank.html</result>
+    	</action>
+    	<action name="changeState" class="user.templateService" method="changeState">
+    		<result>/user_resource/templateService/ajax/networkInfo.jsp</result>
+    		<result name="fail">/blank.html</result>
+    	</action>
+    	<action name="getRunState" class="user.templateService" method="showVMDetail">
+    		<result>/user_resource/templateService/ajax/runState.jsp</result>
+    		<result name="fail">/blank.html</result>
+    	</action>
+    	<action name="createVapp" class="user.templateService" method="createVapp">
+    		<result>/blank.html</result>
+    		<result name="fail">/blank.html</result>
+    	</action>
+    	<action name="showConsole" class="user.templateService" method="prepareConsole">
+    		<result>/user_resource/templateService/ajax/Console.jsp</result>
+    	</action>
+    </package>
+</struts>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="persistentClasses.Message" table="message">
+    <id name="id" column="id" type="int">
+      <generator class="identity"/>
+    </id>
+    <many-to-one name="user" column="userid" class="persistentClasses.User" not-null="true" lazy="false" />
+    <property name="content" column="content" type="string" /> 
+    <property name="time" column="time" type="long" not-null="true" />
+    <property name="reply" column="reply" type="string" />
+    <property name="replyTime" column="reply_time" type="java.lang.Integer" />
+  </class>
+
+</hibernate-mapping>

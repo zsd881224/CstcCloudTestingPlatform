@@ -1,0 +1,23 @@
+textarea {resize: none;}
+
+/* kuang */
+.kuang_196 {width: 196px;}
+.kuang_196_biaoti {height: 27px; background: url(../img/biaoti_196.png) left top no-repeat;}
+
+.kuang_746 {width: 746px;}
+.kuang_746_biaoti {height: 27px; background: url(../img/biaoti_746.png) left top no-repeat;}
+
+.kuang_370 {width: 370px;}
+.kuang_370_biaoti {height: 27px; background: url(../img/biaoti_370.png) left top no-repeat;}
+
+.kuang_196_neirong, .kuang_370_neirong, .kuang_746_neirong {border-left: solid #888888 1px; border-right: solid #888888 1px; border-bottom: solid #888888 1px; padding: 10px 5px; }
+
+/* wenzi */
+.biaoti_wenzi {color: white; font-size: 13px; font-weight: bold; line-height: 27px; padding-left: 10px;}
+
+/* left_nav */
+.left_nav {border: solid #cccccc 2px; background: #f3f3f3; font-size: 15px; padding: 20px 15px; border-radius: 10px;}
+
+/* message and reply */
+.message {width: 646px; margin-left: 15px; border-bottom: dashed #aaaaaa 1px; margin-top: 10px; padding: 10px; font-size: 13px; word-wrap: break-word;}
+.reply {margin-left: 20px; margin-top: 10px; width: 592px; border: solid #BDB76B 2px; background: #FAF0E6; padding: 10px; border-radius: 10px; word-wrap: break-word; }
