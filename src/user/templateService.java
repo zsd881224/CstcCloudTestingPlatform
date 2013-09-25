@@ -39,6 +39,8 @@ import com.vmware.vcloud.sdk.VM;
 public class templateService implements SessionAware, ServletRequestAware {
 	private int maxDevice;
 	private int haveDevice;
+	private int performanceDevice;
+	private int templateDevice;
 	private HttpServletRequest servletRequest;
 	private Map<String, Object> sessionMap;
 	private ArrayList<String> templateNameSet;
@@ -120,7 +122,7 @@ public class templateService implements SessionAware, ServletRequestAware {
 		query.setInteger("userid", (Integer) sessionMap.get("userid"));
 		List<?> vapps = query.list();
 		tx.commit();
-		haveDevice = vapps.size();
+		performanceDevice = vapps.size();
 		
 		session = sessionFactory.getCurrentSession();
 		tx = session.beginTransaction();
@@ -128,7 +130,9 @@ public class templateService implements SessionAware, ServletRequestAware {
 		query.setInteger("userid", (Integer) sessionMap.get("userid"));
 		vapps = query.list();
 		tx.commit();
-		haveDevice += vapps.size();
+		templateDevice = vapps.size();
+		
+		haveDevice = performanceDevice + templateDevice;
 		
 		return "success";
 	}
@@ -140,7 +144,15 @@ public class templateService implements SessionAware, ServletRequestAware {
 	public int getHaveDevice() {
 		return haveDevice;
 	}
-
+	
+	public int getPerformanceDevice() {
+		return performanceDevice;
+	}
+	
+	public int getTemplateDevice() {
+		return templateDevice;
+	}
+	
 	public String listApp() throws InstantiationException,
 			IllegalAccessException, ClassNotFoundException, SQLException {
 		if (check_user().equals("needlogin"))
@@ -398,6 +410,12 @@ public class templateService implements SessionAware, ServletRequestAware {
 		
 		if (servletRequest.getParameter("name") == null||servletRequest.getParameter("name") == "") {
 			sessionMap.put("info", "非法设备名！");
+			sessionMap.put("info_kind", "warning");
+			return "fail";
+		}
+		
+		if (servletRequest.getParameter("name").getBytes().length>40) {
+			sessionMap.put("info", "请确保设备名小于40个字符！");
 			sessionMap.put("info_kind", "warning");
 			return "fail";
 		}

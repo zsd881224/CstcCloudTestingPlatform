@@ -107,6 +107,12 @@
     	</action>
     </package>
     
+    <package name="admin" namespace="/admin" extends="default">
+    	<action name="switchToUserView" class="admin.admin" method="switchToUserView">
+    		<result>/user_resource/index.jsp</result>
+    	</action>
+    </package>
+    
     <package name="performanceTesting" namespace="/performanceTesting" extends="default">
     	<action name="" class="user.performanceTesting" method="index">
     		<result>/user_resource/performanceTesting/index.jsp</result>

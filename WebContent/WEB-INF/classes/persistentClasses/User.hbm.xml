@@ -4,7 +4,7 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-  <class name="persistentClasses.User" table="user">
+  <class name="persistentClasses.User" table="user" dynamic-insert="true" dynamic-update="true">
     <id name="id" column="id" type="int">
       <generator class="identity"/>
     </id>
@@ -19,6 +19,8 @@
     <property name="qq" column="qq" type="java.lang.Integer" />
     <property name="address" column="address" type="string" />
     <property name="zip" column="zip" type="java.lang.Integer" />
+    <property name="isAdmin" column="isadmin" type="boolean" />
+    <property name="adminLevel" column="adminlevel" type="java.lang.Integer" />
   </class>
 
 </hibernate-mapping>

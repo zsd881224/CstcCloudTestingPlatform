@@ -24,7 +24,6 @@ qwe123
 <property name="show_sql">false</property>
 
 <mapping resource="persistentClasses/User.hbm.xml" />
-<mapping resource="persistentClasses/Admin.hbm.xml" />
 <mapping resource="persistentClasses/Message.hbm.xml" />
 <mapping resource="persistentClasses/SystemVapp.hbm.xml" />
 <mapping resource="persistentClasses/SystemTemplate.hbm.xml" />

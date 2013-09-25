@@ -1,6 +1,6 @@
 ﻿<%@ taglib prefix="s" uri="/struts-tags"%>
 
-<ul>
+<ul class="F13">
 	<li>VM名称：<s:property value='vmDetail["vmname"]' /></li>
 	<li>计算机名：<s:property value='vmDetail["computername"]' /></li>
 	<li>CPU个数：<s:property value='vmDetail["noofcpu"]' /></li>

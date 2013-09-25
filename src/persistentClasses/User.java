@@ -13,6 +13,8 @@ public class User {
 	private Integer qq;
 	private String address;
 	private Integer zip;
+	private boolean isAdmin;
+	private Integer adminLevel;
 	
 	private void setId(int id) {
 		this.id = id;
@@ -108,5 +110,21 @@ public class User {
 	
 	public Integer getZip() {
 		return this.zip;
+	}
+	
+	public void setIsAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+	
+	public boolean getIsAdmin() {
+		return this.isAdmin;
+	}
+	
+	public void setAdminLevel(Integer adminLevel) {
+		this.adminLevel = adminLevel;
+	}
+	
+	public Integer getAdminLevel() {
+		return this.adminLevel;
 	}
 }

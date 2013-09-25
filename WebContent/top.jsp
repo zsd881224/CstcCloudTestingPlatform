@@ -24,18 +24,21 @@
 	<div class="F_Left daohang_left">
 		<strong><a href="/index" title="首页">&nbsp&nbsp&nbsp首 页&nbsp&nbsp&nbsp</a></strong>
 		<% if(session.getAttribute("userid")!=null) { %>
-		<strong><a href="/performanceTesting" title="性能测试">性能测试</a></strong>
-		<strong><a href="/templateService" title="模板服务">模板服务</a></strong>
-		<strong><a href="/environmentService" title="环境定制服务">环境定制服务</a></strong>
-		<strong><a href="/bigDataAnalysis" title="大数据分析服务">大数据分析服务</a></strong>
-		<% } %>
-		<% if(session.getAttribute("isadmin")!=null) { %>
-		<strong><a href="/admin" title="管理界面">管理界面</a></strong>
+			<% if(session.getAttribute("isadmin")!=null) { %>
+			<strong><a href="/admin/switchToUserView" title="用户视图">用户视图</a></strong>
+			<strong><a href="https://172.16.21.248/cloud/" target="blank" title="后台管理">后台管理</a></strong>
+			<% } else { %>
+			<strong><a href="/performanceTesting" title="性能测试">性能测试</a></strong>
+			<strong><a href="/templateService" title="模板服务">模板服务</a></strong>
+			<strong><a href="/environmentService" title="环境定制服务">环境定制服务</a></strong>
+			<strong><a href="/bigDataAnalysis" title="大数据分析服务">大数据分析服务</a></strong>
+			<% } %>
 		<% } %>
 	</div>
 	<div class="F_Right daohang_right">
 		<% if(session.getAttribute("userid")!=null) { %>
-		<p>你好，<% if(session.getAttribute("isadmin")!=null) { %>管理员 <% } %><a href="/userInfo" style="font-weight: bold; color: white;">
+		<p>你好，<% if(session.getAttribute("isadmin")!=null) { %>管理员 <% } %>
+			<a href="/userInfo" style="font-weight: bold; color: white;">
 			<% if(session.getAttribute("nickname")!=null&&session.getAttribute("nickname")!="") { %>
 			<%=session.getAttribute("nickname") %>
 			<% } else { %>

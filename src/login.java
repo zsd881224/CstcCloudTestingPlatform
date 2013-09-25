@@ -12,7 +12,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import persistentClasses.Admin;
 import persistentClasses.User;
 
 public class login implements SessionAware, ServletRequestAware {
@@ -55,17 +54,22 @@ public class login implements SessionAware, ServletRequestAware {
 			Session session = sessionFactory.getCurrentSession();
 			Transaction tx = session.beginTransaction();
 			Query query = session
-					.createQuery("from Admin where username=:username and password=password(:password)");
+					.createQuery("from User where username=:username and password=password(:password) and isadmin=1");
 			query.setString("username", username);
 			query.setString("password", password);
 			List<?> admins = query.list();
 			tx.commit();
 			Iterator<?> it = admins.iterator();
 			if (it.hasNext()) {
-				Admin admin = (Admin) it.next();
+				User admin = (User) it.next();
 				sessionMap.put("userid", admin.getId());
 				sessionMap.put("username", admin.getUsername());
+				sessionMap.put("nickname", admin.getNickname());
 				sessionMap.put("isadmin", true);
+				if(admin.getAdminLevel()!=null)
+					sessionMap.put("adminLevel", admin.getAdminLevel());
+				else
+					sessionMap.put("adminLevel", 9999);
 				
 				sessionMap.put("info", "登录成功！");
 				sessionMap.put("info_kind", "info");
@@ -214,6 +218,7 @@ public class login implements SessionAware, ServletRequestAware {
 		sessionMap.remove("username");
 		sessionMap.remove("nickname");
 		sessionMap.remove("isadmin");
+		sessionMap.remove("adminLevel");
 	}
 
 	public String checkLogin() {

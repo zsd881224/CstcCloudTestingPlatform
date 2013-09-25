@@ -42,7 +42,7 @@
 		<div class="kuang_370_biaoti">
 			<p class="biaoti_wenzi">基本信息</p>
 		</div>
-		<div class="kuang_370_neirong" style="height: 150px;" id="basicInfo">
+		<div class="kuang_370_neirong" style="height: 150px; overflow-y: auto;" id="basicInfo">
 			<p class="subinfo">数据正在载入，请等待...</p>
 		</div>
 	</div>
@@ -51,8 +51,8 @@
 		<div class="kuang_370_biaoti">
 			<p class="biaoti_wenzi">虚拟设备信息</p>
 		</div>
-		<div class="kuang_370_neirong" style="height: 150px;" id="devicesInfo">
-			<p class="subinfo">数据正在载入，请等待...</p>
+		<div class="kuang_370_neirong" style="height: 150px; overflow-y: auto;" id="devicesInfo">
+			<div class="subinfo">数据正在载入，请等待...</div>
 		</div>
 	</div>
 	
@@ -60,7 +60,7 @@
 		<div class="kuang_370_biaoti">
 			<p class="biaoti_wenzi">网络配置信息</p>
 		</div>
-		<div class="kuang_370_neirong" style="height: 150px;" id="networkInfo">
+		<div class="kuang_370_neirong" style="height: 150px; overflow-y: auto;" id="networkInfo">
 			<p class="subinfo">请选择需要查看网络配置信息的虚拟设备</p>
 		</div>
 	</div>
@@ -70,7 +70,7 @@
 		<div class="kuang_370_biaoti">
 			<p class="biaoti_wenzi">运行状况信息</p>
 		</div>
-		<div class="kuang_370_neirong" style="height: 150px;" id="runState">
+		<div class="kuang_370_neirong" style="height: 150px; overflow-y: auto;" id="runState">
 			<p class="subinfo">请选择需要查看运行状况的虚拟机</p>
 		</div>
 	</div>

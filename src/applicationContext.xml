@@ -19,7 +19,6 @@
 		<property name="mappingResources">
 			<list>
 				<value>/persistentClasses/User.hbm.xml</value>
-				<value>/persistentClasses/Admin.hbm.xml</value>
 				<value>/persistentClasses/Message.hbm.xml</value>
 				<value>/persistentClasses/SystemVapp.hbm.xml</value>
 				<value>/persistentClasses/SystemTemplate.hbm.xml</value>
