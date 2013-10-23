@@ -108,8 +108,20 @@
     </package>
     
     <package name="admin" namespace="/admin" extends="default">
-    	<action name="switchToUserView" class="admin.admin" method="switchToUserView">
+    	<action name="switchToUserView" class="admin.admin" method="check_admin">
     		<result>/user_resource/index.jsp</result>
+    	</action>
+    	<action name="basicConfig" class="admin.admin" method="get_basic_config">
+    		<result>/admin_resource/basicConfig.jsp</result>
+    	</action>
+    	<action name="vmManagement" class="admin.admin" method="vmManagement">
+    		<result>/admin_resource/vmManagement.jsp</result>
+    	</action>
+    	<action name="showMessage" class="admin.admin" method="showMessage">
+    		<result>/admin_resource/showMessage.jsp</result>
+    	</action>
+    	<action name="userRights" class="admin.admin" method="userRights">
+    		<result>/admin_resource/userRights.jsp</result>
     	</action>
     </package>
     

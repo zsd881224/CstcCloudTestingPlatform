@@ -54,8 +54,8 @@ public class message implements SessionAware, ServletRequestAware {
 	public String leaveMessage() {
 		if (check_user().equals("needlogin"))
 			return "needlogin";
-		
-		if(servletRequest.getParameter("content").length()>150) {
+
+		if (servletRequest.getParameter("content").length() > 150) {
 			sessionMap.put("info", "请勿超过150字符！");
 			sessionMap.put("info_kind", "warning");
 			return "error";
@@ -98,32 +98,37 @@ public class message implements SessionAware, ServletRequestAware {
 	public String listMessage() {
 		if (check_user().equals("needlogin"))
 			return "needlogin";
-		
-		if(servletRequest.getParameter("page")==null||servletRequest.getParameter("page")==""||!isNumeric(servletRequest.getParameter("page"))) {
+
+		if (servletRequest.getParameter("page") == null
+				|| servletRequest.getParameter("page") == ""
+				|| !isNumeric(servletRequest.getParameter("page"))) {
 			curPage = 1;
-		}
-		else {
+		} else {
 			curPage = Integer.parseInt(servletRequest.getParameter("page"));
 		}
-		
+
 		Session session = sessionFactory.getCurrentSession();
 		Transaction tx = session.beginTransaction();
-		Query query = session.createQuery("select count(*) from Message where userid=:userid order by time desc");
+		Query query = session
+				.createQuery("select count(*) from Message where userid=:userid order by time desc");
 		query.setInteger("userid", (Integer) sessionMap.get("userid"));
-		float count_all = ((Long)query.uniqueResult()).floatValue();
+		float count_all = ((Long) query.uniqueResult()).floatValue();
 		tx.commit();
-		
-		if(curPage<=0) curPage=1;
-		maxPage = (int) Math.ceil(count_all/Constant.message_per_page);
-		if(curPage>maxPage) curPage=maxPage;
-		
+
+		if (curPage <= 0)
+			curPage = 1;
+		maxPage = (int) Math.ceil(count_all / Constant.message_per_page);
+		if (curPage > maxPage)
+			curPage = maxPage;
+
 		messageMap = new LinkedHashMap<String, LinkedHashMap<String, String>>();
-		
+
 		session = sessionFactory.getCurrentSession();
 		tx = session.beginTransaction();
-		query = session.createQuery("from Message where userid=:userid order by time desc");
+		query = session
+				.createQuery("from Message where userid=:userid order by time desc");
 		query.setInteger("userid", (Integer) sessionMap.get("userid"));
-		query.setFirstResult((curPage-1)*Constant.message_per_page);
+		query.setFirstResult((curPage - 1) * Constant.message_per_page);
 		query.setMaxResults(Constant.message_per_page);
 		List<?> messages = query.list();
 		tx.commit();
@@ -142,12 +147,11 @@ public class message implements SessionAware, ServletRequestAware {
 			messageMap.get(String.valueOf(message.getId())).put("reply",
 					message.getReply());
 			if (message.getReply() != null) {
-				messageMap
-						.get(String.valueOf(message.getId()))
-						.put("replyTime",
-								new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-										.format(new Date(
-												message.getReplyTime().longValue() * 1000)));
+				messageMap.get(String.valueOf(message.getId())).put(
+						"replyTime",
+						new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+								.format(new Date(message.getReplyTime()
+										.longValue() * 1000)));
 			} else
 				messageMap.get(String.valueOf(message.getId())).put(
 						"replyTime", "null");
@@ -159,66 +163,72 @@ public class message implements SessionAware, ServletRequestAware {
 	public LinkedHashMap<String, LinkedHashMap<String, String>> getMessageMap() {
 		return this.messageMap;
 	}
-	
+
 	public int getMaxPage() {
 		return this.maxPage;
 	}
-	
+
 	public int getCurPage() {
 		return this.curPage;
 	}
-	
-	public boolean isNumeric(String str){
+
+	public boolean isNumeric(String str) {
 		Pattern pattern = Pattern.compile("[0-9]*");
 		Matcher isNum = pattern.matcher(str);
-		if(!isNum.matches() )
-		{
+		if (!isNum.matches()) {
 			return false;
-		}
-		else return true;
+		} else
+			return true;
 	}
-	
+
 	public String deleteMessage() {
 		if (check_user().equals("needlogin"))
 			return "needlogin";
-		
-		if(servletRequest.getParameter("id")==null||servletRequest.getParameter("id")==""||!isNumeric(servletRequest.getParameter("id"))) {
+
+		if (servletRequest.getParameter("id") == null
+				|| servletRequest.getParameter("id") == ""
+				|| !isNumeric(servletRequest.getParameter("id"))) {
 			sessionMap.put("info", "留言ID必须存在且为数字！");
 			sessionMap.put("info_kind", "warning");
 			return "error";
 		}
-		
+
 		Session session = sessionFactory.getCurrentSession();
 		Transaction tx = session.beginTransaction();
-		Query query = session.createQuery("select count(*) from Message where userid=:userid and id=:id");
+		Query query = session
+				.createQuery("select count(*) from Message where userid=:userid and id=:id");
 		query.setInteger("userid", (Integer) sessionMap.get("userid"));
-		query.setInteger("id", Integer.valueOf(servletRequest.getParameter("id")));
-		int isExist = ((Long)query.uniqueResult()).intValue();
+		query.setInteger("id",
+				Integer.valueOf(servletRequest.getParameter("id")));
+		int isExist = ((Long) query.uniqueResult()).intValue();
 		tx.commit();
-		
-		if(isExist==0) {
+
+		if (isExist == 0) {
 			sessionMap.put("info", "非法操作！");
 			sessionMap.put("info_kind", "warning");
 			return "error";
 		}
-		
+
 		session = sessionFactory.getCurrentSession();
 		tx = session.beginTransaction();
-		Message message = (Message) session.load(Message.class, Integer.valueOf(servletRequest.getParameter("id")));
+		Message message = (Message) session.load(Message.class,
+				Integer.valueOf(servletRequest.getParameter("id")));
 		session.delete(message);
 		tx.commit();
-		
-		//计算当前页为第几页
+
+		// 计算当前页为第几页
 		session = sessionFactory.getCurrentSession();
 		tx = session.beginTransaction();
-		query = session.createQuery("select count(*) from Message where userid=:userid and id>:id");
+		query = session
+				.createQuery("select count(*) from Message where userid=:userid and id>:id");
 		query.setInteger("userid", (Integer) sessionMap.get("userid"));
-		query.setInteger("id", Integer.valueOf(servletRequest.getParameter("id")));
-		float count = ((Long)query.uniqueResult()).floatValue();
+		query.setInteger("id",
+				Integer.valueOf(servletRequest.getParameter("id")));
+		float count = ((Long) query.uniqueResult()).floatValue();
 		tx.commit();
-		
-		curPage = (int) Math.ceil(count/Constant.message_per_page);
-		
+
+		curPage = (int) Math.ceil(count / Constant.message_per_page);
+
 		sessionMap.put("info", "删除成功！");
 		sessionMap.put("info_kind", "info");
 		return "success";

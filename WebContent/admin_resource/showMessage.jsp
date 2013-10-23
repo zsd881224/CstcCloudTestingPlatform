@@ -4,7 +4,7 @@
 <%@ include file="/info_displayer.jsp" %>
 
 <div class="kuang_196 F_Left Mt15">
-	<%@ include file="/user_resource/userManagement/left.jsp" %>
+	<%@ include file="/admin_resource/left.jsp" %>
 </div>
 
 <div class="kuang_746 F_Right Mt10">
@@ -18,12 +18,13 @@
 				<s:iterator value="messageMap">
 					<li>
 						<div class="message">
+							<p class="F14">来自 <span style="font-weight: bold;"><s:property value="value['username']" /></span> :</p>
 							<p><s:property value="value['content']" /></p>
-							<p class="Mt5"><span class="subinfo"><s:property value="value['time']" /></span><a class="F_Right" href="/message/deleteMessage?id=<s:property value="key" />">删除</a></p>
+							<p class="Mt5"><span class="subinfo"><s:property value="value['time']" /></span><span class="F_Right"><a href="#?id=<s:property value="key" />">回复</a> - <a href="/message/deleteMessage?id=<s:property value="key" />">删除</a></span></p>
 							<s:set name="reply" value="value['reply']" />
 							<s:if test='#reply!=null'>
 								<div class="reply">
-									<p><span class="subtitle">管理员回复:</span>
+									<p><span class="subtitle">回复:</span>
 									<s:property value="value['reply']" /></p>
 									<p class="Mt5 subinfo"><s:property value="value['replyTime']" /></p>
 								</div>
@@ -36,14 +37,6 @@
 	</div>
 	
 	<div class="Mt20" id="page" style="text-align: center;"></div>
-	
-	<div style="margin-left: 15px; margin-right: 30px; margin-top: 20px; border: solid #aaaaaa 1px; padding: 10px;">
-		<p style="font-size: 14px;">新留言：</p>
-		<form accept-charset="utf-8" onsubmit="document.charset='utf-8';" action="/message/leaveMessage" method="POST" class="Mt10" style="border: none;">
-			<textarea name="content" id="content" style="height: 100px; width: 100%; font-size: 13px;"></textarea>
-			<input class="Mt10" type="submit" value="提交" />
-		</form>
-	</div>
 </div>
 
 <script>

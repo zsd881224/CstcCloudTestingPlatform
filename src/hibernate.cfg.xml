@@ -25,6 +25,7 @@ qwe123
 
 <mapping resource="persistentClasses/User.hbm.xml" />
 <mapping resource="persistentClasses/Message.hbm.xml" />
+<mapping resource="persistentClasses/Config.hbm.xml" />
 <mapping resource="persistentClasses/SystemVapp.hbm.xml" />
 <mapping resource="persistentClasses/SystemTemplate.hbm.xml" />
 <mapping resource="persistentClasses/TestVapp.hbm.xml" />
