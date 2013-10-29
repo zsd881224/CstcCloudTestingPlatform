@@ -1,4 +1,4 @@
-<%@ taglib prefix="s" uri="/struts-tags"%>
+﻿<%@ taglib prefix="s" uri="/struts-tags"%>
 
 <s:if test="templateNameSet.size()>0">
 	<table class="F14">

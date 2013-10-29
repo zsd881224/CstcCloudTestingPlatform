@@ -9,7 +9,7 @@
     <constant name="struts.devMode" value="true" />
     
     <package name="default" extends="struts-default">
-     	<!-- <global-results>
+     	<global-results>
       		<result name="error" type="redirectAction">
       			<param name="actionName">error</param>
       			<param name="namespace">/</param>
@@ -29,7 +29,7 @@
     			<param name="actionName">error</param>
     			<param name="namespace">/</param>
     		</result>
-    	</action> -->
+    	</action>
     </package>
     
     <package name="main" namespace="" extends="default">
@@ -42,6 +42,9 @@
         	<result>/index.jsp</result>
         	<result name="user">/user_resource/index.jsp</result>
     		<result name="admin">/admin_resource/index.jsp</result>
+        </action>
+        <action name="error">
+        	<result>/error.jsp</result>
         </action>
         <action name="register">
         	<result>/register.jsp</result>
@@ -67,6 +70,12 @@
         </action>
         <action name="templateService" class="user.templateService" method="index">
         	<result>/user_resource/templateService/index.jsp</result>
+        </action>
+        <action name="environmentService" class="user.userInfo" method="check_user">
+        	<result>/notComplete.jsp</result>
+        </action>
+        <action name="bigDataAnalysis" class="user.userInfo" method="check_user">
+        	<result>/notComplete.jsp</result>
         </action>
     </package>
     

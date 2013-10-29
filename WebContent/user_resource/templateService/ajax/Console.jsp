@@ -1,4 +1,4 @@
-<%@ taglib prefix="s" uri="/struts-tags" %>
+﻿<%@ taglib prefix="s" uri="/struts-tags" %>
 
 { "host" : "<s:property value='consoleKey["host"]' />" ,
 "ticket" : "<s:property value='consoleKey["ticket"]' />" ,
