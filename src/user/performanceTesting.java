@@ -258,6 +258,12 @@ public class performanceTesting implements SessionAware, ServletRequestAware {
 
 		Collection<VM> vmsCollection = CstcVCloudAPI.listVM(vapp.getOrgname(),
 				vapp.getVdcname(), vapp.getNameinvcloud());
+		if(vmsCollection==null) {
+			sessionMap.put("info", "无法获取相应vApp！");
+			sessionMap.put("info_kind", "warning");
+			return "fail";
+		}
+		
 		vmListMap = new LinkedHashMap<String, LinkedHashMap<String, String>>();
 		for (VM vm : vmsCollection) {
 			vmListMap.put(vm.getReference().getName(),
@@ -315,6 +321,12 @@ public class performanceTesting implements SessionAware, ServletRequestAware {
 
 		Collection<VM> vmsCollection = CstcVCloudAPI.listVM(vapp.getOrgname(),
 				vapp.getVdcname(), vapp.getNameinvcloud());
+		if(vmsCollection==null) {
+			sessionMap.put("info", "发送命令失败！");
+			sessionMap.put("info_kind", "warning");
+			return "fail";
+		}
+		
 		vmListMap = new LinkedHashMap<String, LinkedHashMap<String, String>>();
 		for (VM vm : vmsCollection) {
 			vmListMap.put(vm.getReference().getName(),

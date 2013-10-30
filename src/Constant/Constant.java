@@ -15,7 +15,7 @@ public class Constant {
 			+ "&password=" + userPasswd + "&useUnicode=true&characterEncoding=utf8";
 
 	// -----Vcloud-----
-	public static final String vServer = "http://172.16.21.248";
+	public static final String vServer = "http://172.16.42.103";
 	public static final String vUser = "administrator@System";
 	public static final String vPswd = "cstcqwe123";
 	

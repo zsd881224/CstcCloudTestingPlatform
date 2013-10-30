@@ -178,7 +178,9 @@ function changeState(vmid, newstate) {
 function updateNetworkInfo(xmlhttp) {
 	if (xmlhttp.readyState==4) {// 4 = "loaded"
 		if (xmlhttp.status==200) {// 200 = "OK"
-			document.getElementById('networkInfo').innerHTML=xmlhttp.responseText;
+			if(xmlhttp.responseText!="")
+				document.getElementById('networkInfo').innerHTML=xmlhttp.responseText;
+			else document.getElementById('networkInfo').innerHTML="<p class='subinfo'>请选择需要查看网络配置信息的虚拟设备</p>";
 			info_check();
 		}
 	}
@@ -207,7 +209,9 @@ function showRunState(obj) {
 function updateRunState(xmlhttp) {
 	if (xmlhttp.readyState==4) {// 4 = "loaded"
 		if (xmlhttp.status==200) {// 200 = "OK"
-			document.getElementById('runState').innerHTML=xmlhttp.responseText;
+			if(xmlhttp.responseText!="")
+				document.getElementById('runState').innerHTML=xmlhttp.responseText;
+			else document.getElementById('runState').innerHTML="<p class='subinfo'>请选择需要查看运行状况的虚拟机</p>";
 			info_check();
 		}
 	}
