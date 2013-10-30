@@ -172,6 +172,8 @@ public class templateService implements SessionAware, ServletRequestAware {
 			vappListMap.put(vapp.getVappname(), new LinkedHashMap<String, String>());
 			vappListMap.get(vapp.getVappname()).put("vappname",
 					vapp.getVappname());
+			vappListMap.get(vapp.getVappname()).put("systemTemplate",
+					vapp.getSystemTemplate().getTempname());
 			vappListMap.get(vapp.getVappname()).put(
 					"time",
 					new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")

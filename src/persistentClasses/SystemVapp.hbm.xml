@@ -11,6 +11,7 @@
     <property name="orgname" column="orgname" type="string" not-null="true" /> 
     <property name="vdcname" column="vdcname" type="string" not-null="true" />
     <property name="vappname" column="vappname" type="string" not-null="true" />
+    <many-to-one name="systemTemplate" column="templateid" class="persistentClasses.SystemTemplate" not-null="true" lazy="false" />
     <many-to-one name="user" column="userid" class="persistentClasses.User" not-null="true" lazy="false" />
     <property name="nameinvcloud" column="nameinvcloud" type="string" not-null="true" />
     <property name="time" column="time" type="long" not-null="true" />
