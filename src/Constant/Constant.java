@@ -15,9 +15,9 @@ public class Constant {
 			+ "&password=" + userPasswd + "&useUnicode=true&characterEncoding=utf8";
 
 	// -----Vcloud-----
-	public static final String vServer = "http://172.16.42.248";
-	public static final String vUser = "administrator@System";
-	public static final String vPswd = "cstcqwe123";
+	public static final String vServer = "http://172.16.42.55";
+	public static final String vUser = "cstc@System";
+	public static final String vPswd = "qwe123";
 	
 	// -----默认新建位置-----
 	public static final String default_org = "cstc";

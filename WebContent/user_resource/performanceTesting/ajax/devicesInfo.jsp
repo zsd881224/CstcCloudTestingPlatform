@@ -11,3 +11,6 @@
 		</s:iterator>
 	</table>
 </s:if>
+<s:else>
+<p class="subinfo">您还没有创建任何虚拟机</p>
+</s:else>

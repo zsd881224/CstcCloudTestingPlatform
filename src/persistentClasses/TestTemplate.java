@@ -2,9 +2,11 @@ package persistentClasses;
 
 public class TestTemplate {
 	private int id;
+	private String tempname;
 	private String orgname;
 	private String vdcname;
-	private String tempname;
+	private String nameinvcloud;
+
 	
 	private void setId(int id) {
 		this.id = id;
@@ -12,6 +14,14 @@ public class TestTemplate {
 	
 	public int getId() {
 		return this.id;
+	}
+	
+	public void setTempname(String tempname) {
+		this.tempname = tempname;
+	}
+	
+	public String getTempname() {
+		return this.tempname;
 	}
 	
 	public void setOrgname(String orgname) {
@@ -30,11 +40,11 @@ public class TestTemplate {
 		return this.vdcname;
 	}
 	
-	public void setTempname(String tempname) {
-		this.tempname = tempname;
+	public void setNameinvcloud(String nameinvcloud) {
+		this.nameinvcloud = nameinvcloud;
 	}
 	
-	public String getTempname() {
-		return this.tempname;
+	public String getNameinvcloud() {
+		return this.nameinvcloud;
 	}
 }

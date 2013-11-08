@@ -2,9 +2,18 @@ package persistentClasses;
 
 public class SystemTemplate {
 	private int id;
+	private String tempname;
 	private String orgname;
 	private String vdcname;
-	private String tempname;
+	private String nameinvcloud;
+	
+	public void setTempname(String tempname) {
+		this.tempname = tempname;
+	}
+	
+	public String getTempname() {
+		return this.tempname;
+	}
 	
 	private void setId(int id) {
 		this.id = id;
@@ -30,11 +39,11 @@ public class SystemTemplate {
 		return this.vdcname;
 	}
 	
-	public void setTempname(String tempname) {
-		this.tempname = tempname;
+	public void setNameinvcloud(String nameinvcloud) {
+		this.nameinvcloud = nameinvcloud;
 	}
 	
-	public String getTempname() {
-		return this.tempname;
+	public String getNameinvcloud() {
+		return this.nameinvcloud;
 	}
 }

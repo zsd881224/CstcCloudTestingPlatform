@@ -5,7 +5,7 @@ public class SystemVapp {
 	private String orgname;
 	private String vdcname;
 	private String vappname;
-	private SystemTemplate systemTemplate;
+	private String templatename;
 	private User user;
 	private String nameinvcloud;
 	private long time;
@@ -42,12 +42,12 @@ public class SystemVapp {
 		return this.vappname;
 	}
 	
-	public void setSystemTemplate(SystemTemplate systemTemplate) {
-		this.systemTemplate = systemTemplate;
+	public void setTemplatename(String templatename) {
+		this.templatename = templatename;
 	}
 	
-	public SystemTemplate getSystemTemplate() {
-		return this.systemTemplate;
+	public String getTemplatename() {
+		return this.templatename;
 	}
 		
 	public void setUser(User user) {

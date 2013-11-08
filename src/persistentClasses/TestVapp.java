@@ -5,7 +5,7 @@ public class TestVapp {
 	private String orgname;
 	private String vdcname;
 	private String vappname;
-	private TestTemplate testTemplate;
+	private String templatename;
 	private User user;
 	private String nameinvcloud;
 	private long time;
@@ -42,12 +42,12 @@ public class TestVapp {
 		return this.vappname;
 	}
 	
-	public void setTestTemplate(TestTemplate testTemplate) {
-		this.testTemplate = testTemplate;
+	public void setTemplatename(String templatename) {
+		this.templatename = templatename;
 	}
 	
-	public TestTemplate getTestTemplate() {
-		return this.testTemplate;
+	public String getTemplatename() {
+		return this.templatename;
 	}
 		
 	public void setUser(User user) {

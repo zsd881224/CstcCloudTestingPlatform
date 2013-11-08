@@ -172,15 +172,14 @@ public class CstcVCloudAPI {
 			
 			VappTemplate vappTemplate = VappTemplate.getVappTemplateByReference(
 					vcloudClient, vapptc.iterator().next());
-			if (vdc.getAvailableNetworkRefs().size() == 0) return false;
-
+			
 			InstantiationParamsType instantiationParams = new InstantiationParamsType();
-
+			
 			InstantiateVAppTemplateParamsType instVappTemplParams = new InstantiateVAppTemplateParamsType();
 			instVappTemplParams.setName(vappName);
 			instVappTemplParams.setSource(vappTemplate.getReference());
 			instVappTemplParams.setInstantiationParams(instantiationParams);
-
+			
 			vdc.instantiateVappTemplate(instVappTemplParams);
 		} catch (Exception e) {
 			return false;

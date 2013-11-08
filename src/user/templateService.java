@@ -173,7 +173,7 @@ public class templateService implements SessionAware, ServletRequestAware {
 			vappListMap.get(vapp.getVappname()).put("vappname",
 					vapp.getVappname());
 			vappListMap.get(vapp.getVappname()).put("systemTemplate",
-					vapp.getSystemTemplate().getTempname());
+					vapp.getTemplatename());
 			vappListMap.get(vapp.getVappname()).put(
 					"time",
 					new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
@@ -453,8 +453,17 @@ public class templateService implements SessionAware, ServletRequestAware {
 		String name_time = new SimpleDateFormat("yyyyMMddHHmmss").format(time);
 		String vappName = sessionMap.get("username") + "_" + name_time + "_"
 				+ (int) (Math.random() * 100000);
-
-		if (!CstcVCloudAPI.createVapp(Constant.Constant.default_org,Constant.Constant.default_vdc,servletRequest.getParameter("templatename"),vappName)) {
+		
+		session = sessionFactory.getCurrentSession();
+		tx = session.beginTransaction();
+		query = session.createQuery("select nameinvcloud from SystemTemplate where tempname=:tempname");
+		query.setString("tempname", servletRequest.getParameter("templatename"));
+		String nameinvcloud= (String) query.uniqueResult();
+		tx.commit();
+		
+		System.out.println(nameinvcloud);
+		
+		if (!CstcVCloudAPI.createVapp(Constant.Constant.default_org,Constant.Constant.default_vdc,nameinvcloud,vappName)) {
 			sessionMap.put("info", "无法新建VM！");
 			sessionMap.put("info_kind", "warning");
 			return "fail";
@@ -464,6 +473,7 @@ public class templateService implements SessionAware, ServletRequestAware {
 		vapp.setOrgname("cstc");
 		vapp.setVdcname("cstc-vdc");
 		vapp.setVappname(servletRequest.getParameter("name"));
+		vapp.setTemplatename(servletRequest.getParameter("templatename"));
 		vapp.setUser(user);
 		vapp.setNameinvcloud(vappName);
 		vapp.setTime(time.getTime() / 1000);
